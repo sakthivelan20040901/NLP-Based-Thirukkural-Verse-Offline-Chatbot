@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thirukkural Chatbot</title>
+    <style>
+        /* Set the background image */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Transparent overlay */
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.8); /* white overlay with 80% opacity */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2em;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label, input, button {
+            font-size: 16px;
+        }
+
+        input {
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay div for content -->
+    <div class="overlay">
+        <h1>Thirukkural Chatbot</h1>
+        <form action="/get_verse" method="post">
+            <label for="query">Enter your query or Thirukkural number:</label>
+            <input type="text" id="query" name="query">
+            <button type="submit">Get Verse</button>
+        </form>
+
+        {% if verse_number %}
+            <table>
+                <tr>
+                    <th>Verse Number</th>
+                    <td>{{ verse_number }}</td>
+                </tr>
+                <tr>
+                    <th>Tamil Verse</th>
+                    <td>{{ tamil_verse }}</td>
+                </tr>
+                <tr>
+                    <th>Tamil Explanation</th>
+                    <td>{{ tamil_explanation }}</td>
+                </tr>
+                <tr>
+                    <th>English Translation</th>
+                    <td>{{ english_translation }}</td>
+                </tr>
+                <tr>
+                    <th>English Explanation</th>
+                    <td>{{ explanation }}</td>
+                </tr>
+            </table>
+        {% elif error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
